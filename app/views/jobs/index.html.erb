@@ -1,27 +1,38 @@
-<div class="pull-right">
-  <div class="button">
-    <%= link_to("Add a job", new_job_path, class: "btn btn-default") %>
-  </div>
+<div class="dropdown pull-right">
+  <button class="dropdown dropdown-toggle" data-toggle="dropdown">
+    Series <b class="caret"></b>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+        <%= link_to("lower_wage_bound", jobs_path(:order => "by_lower_bound")) %>
+    </li>
+    <li>
+        <%= link_to("upper_wage_bound", jobs_path(:order => "by_upper_bound")) %>
+    </li>
+    <li>
+        <%= link_to("Time", jobs_path) %>
+    </li>
+  </ul>
 </div>
 <br><br><br>
+
+
 <table class="table table-bordered">
   <thead>
       <tr>
           <th> Job </th>
-          <th> Description</th>
-          <th> Option</th>
+          <th> lower_wage_bound</th>
+          <th> upper_wage_bound</th>
+          <th> Time </th>
       </tr>
   </thead>
   <tbody>
     <% @jobs.each do |job| %>
     <tr>
         <td> <%= link_to(job.title, job_path(job)) %> </td>
-        <td> <%= job.description %> </td>
-        <td>
-          <%= link_to("Edit", edit_job_path(job), :class => "btn btn-sm btn-success") %>
-          <%= link_to("Delete", job_path(job), method: :delete, :data => { :confirm => "Are you sure"}, :class => "btn btn-sm btn-danger") %>
-        </td>
-        </td>
+        <td> <%= job.lower_wage_bound %> </td>
+        <td> <%= job.upper_wage_bound %></td>
+        <td> <%= job.created_at %> </td>
     </tr>
     <% end %>
   </tbody>
