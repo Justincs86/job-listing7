@@ -1,3 +1,7 @@
 <h1> <%= @job.title %> </h1>
 
 <%= simple_format @job.description %>
+
+<div class="text-center" style="margin-top: 50px; font-size: 50px;">
+  <p> <%= link_to("Submit Resume", new_job_resume_path(@job)) %></p>
+</div>
